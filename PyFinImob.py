@@ -1,8 +1,14 @@
+# Mensagem de boas-vindas personalizada
+print('✨ Bem-vindo ao Rael Bank! ✨')
+print('Aqui, transformamos seus sonhos em realidade. Seja para comprar sua casa própria ou planejar um futuro seguro, estamos prontos para ajudar!')
+
 # Solicita o nome do usuário
-nome = input('Olá, seja bem-vindo ao Rael Bank!\nQual é o seu nome? ')
+nome = input('\nAntes de começarmos, qual é o seu nome? ')
+
+print(f'\nÉ um prazer tê-lo aqui, {nome}! Vamos juntos encontrar a melhor opção para o seu financiamento. 🚀')
 
 # Solicita o valor da casa que o usuário deseja comprar
-valor_casa = float(input('Qual é o valor da casa que você deseja comprar? R$ '))
+valor_casa = float(input('\nQual é o valor da casa que você deseja comprar? R$ '))
 
 # Solicita o valor do salário do usuário
 salario = float(input('Agora, por favor, informe o valor do seu salário: R$ '))
@@ -22,10 +28,10 @@ score30 = salario * 0.30
 # Verifica se o valor da parcela é menor ou igual a 30% do salário
 if valor_parcelas <= score30:
     # Se sim, aprova o empréstimo
-    print(f'\nParabéns, {nome}! Seu empréstimo foi APROVADO!!!')
+    print(f'\n🎉 Parabéns, {nome}! Seu empréstimo foi APROVADO!!! 🎉')
 else:
     # Se não, informa ao usuário que a parcela excede o limite permitido
-    print(f'\nInfelizmente, {nome}, o valor da parcela ultrapassa 30% do seu salário.')
+    print(f'\n⚠ Infelizmente, {nome}, o valor da parcela ultrapassa 30% do seu salário.')
 
     # Ajusta o número de anos para pagar até que a parcela esteja dentro do limite permitido
     while valor_parcelas > score30:
@@ -34,19 +40,8 @@ else:
         valor_parcelas = valor_casa / num_parcelas  # Recalcula o valor da parcela
 
     # Mensagem informando que o prazo foi aumentado e a parcela ficou mais acessível
-    print(f'\nAo aumentar o prazo para {anos_pagar} anos, as parcelas ficaram mais acessíveis, mas o total pago ao final será maior.')
+    print(f'\n🔄 Para tornar o pagamento mais acessível, aumentamos o prazo para {anos_pagar} anos.')
+    print('Isso reduz o valor da parcela, mas aumenta o valor total pago ao final.')
 
     # Pergunta se o cliente aceita a nova proposta
-    resposta = input(f'Que tal parcelar em {anos_pagar} anos ({num_parcelas} parcelas de R$ {valor_parcelas:.2f})? Deseja continuar com essa proposta? (sim/não) ').strip().lower()
-
-    if resposta == 'sim':
-        # Exibe o resumo do empréstimo se o cliente aceitar
-        print(f'\nResumo do seu empréstimo, {nome}:')
-        print(f'Valor da casa: R$ {valor_casa:.2f}')
-        print(f'Salário: R$ {salario:.2f}')
-        print(f'Prazo para pagar: {anos_pagar} anos')
-        print(f'Número de parcelas: {num_parcelas}')
-        print(f'Valor da parcela: R$ {round(valor_parcelas, 2):.2f}')
-    else:
-        # Informa que o cliente recusou a proposta
-        print(f'\nTudo bem, {nome}. Caso mude de ideia, estaremos à disposição!')
+    resposta = input(f'Que tal par
