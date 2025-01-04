@@ -2,10 +2,10 @@
 nome = input('Olá, seja bem-vindo ao Rael Bank!\nQual é o seu nome? ')
 
 # Solicita o valor da casa que o usuário deseja comprar
-valor_casa = int(input('Qual é o valor da casa que você deseja comprar? R$ '))
+valor_casa = float(input('Qual é o valor da casa que você deseja comprar? R$ '))
 
 # Solicita o valor do salário do usuário
-salario = int(input('Agora, por favor, informe o valor do seu salário: R$ '))
+salario = float(input('Agora, por favor, informe o valor do seu salário: R$ '))
 
 # Solicita o número de anos que o usuário deseja para pagar o empréstimo
 anos_pagar = int(input('Ótimo! Em quantos anos você gostaria de parcelar o seu empréstimo? '))
@@ -42,11 +42,11 @@ else:
     if resposta == 'sim':
         # Exibe o resumo do empréstimo se o cliente aceitar
         print(f'\nResumo do seu empréstimo, {nome}:')
-        print(f'Valor da casa: R$ {valor_casa}')
-        print(f'Salário: R$ {salario}')
+        print(f'Valor da casa: R$ {valor_casa:.2f}')
+        print(f'Salário: R$ {salario:.2f}')
         print(f'Prazo para pagar: {anos_pagar} anos')
         print(f'Número de parcelas: {num_parcelas}')
-        print(f'Valor da parcela: R$ {valor_parcelas:.2f}')
+        print(f'Valor da parcela: R$ {round(valor_parcelas, 2):.2f}')
     else:
         # Informa que o cliente recusou a proposta
         print(f'\nTudo bem, {nome}. Caso mude de ideia, estaremos à disposição!')
