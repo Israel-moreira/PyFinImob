@@ -23,6 +23,12 @@ print(f'\nÉ um prazer imenso ter você conosco, {nome}! Vamos embarcar juntos n
 # Solicita o valor da casa que o usuário deseja comprar
 valor_casa = float(input('\nAgora, me conte, qual o valor da casa que você deseja comprar? R$ '))
 
+# Pergunta se o usuário deseja dar uma entrada
+entrada = float(input('Você pretende dar uma entrada para reduzir o financiamento? Se sim, informe o valor (ou digite 0 caso não queira): R$ '))
+
+# Ajusta o valor a ser financiado
+valor_financiado = valor_casa - entrada
+
 # Solicita o valor do salário do usuário
 salario = float(input('Perfeito! Agora, qual o valor do seu salário mensal? R$ '))
 
@@ -33,7 +39,7 @@ anos_pagar = int(input('E em quantos anos você gostaria de parcelar o seu empr�
 num_parcelas = anos_pagar * 12
 
 # Calcula o valor de cada parcela do empréstimo
-valor_parcelas = valor_casa / num_parcelas
+valor_parcelas = valor_financiado / num_parcelas
 
 # Calcula 30% do salário do usuário, que será o valor máximo permitido para a parcela
 score30 = salario * 0.30
@@ -51,7 +57,7 @@ else:
     while valor_parcelas > score30:
         anos_pagar += 1  # Aumenta o número de anos
         num_parcelas = anos_pagar * 12  # Recalcula o número de parcelas
-        valor_parcelas = valor_casa / num_parcelas  # Recalcula o valor da parcela
+        valor_parcelas = valor_financiado / num_parcelas  # Recalcula o valor da parcela
 
     # Mensagem informando que o prazo foi aumentado e a parcela ficou mais acessível
     print(f'\n🔄 Para facilitar, aumentamos o prazo para {anos_pagar} anos. Isso vai diminuir o valor da sua parcela mensal, mas o valor total pago ao final será um pouquinho maior. A boa notícia é que você vai ter mais tempo para respirar financeiramente.')
