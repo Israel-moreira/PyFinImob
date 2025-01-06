@@ -1,5 +1,18 @@
+from datetime import datetime
+
+# Obtém a hora atual
+hora_atual = datetime.now().hour
+
+# Define a saudação com base no horário
+if hora_atual < 12:
+    saudacao = "Bom dia"
+elif hora_atual < 18:
+    saudacao = "Boa tarde"
+else:
+    saudacao = "Boa noite"
+
 # Mensagem de boas-vindas personalizada
-print('✨ Bem-vindo ao Rael Bank! ✨')
+print(f'✨ {saudacao}, bem-vindo ao Rael Bank! ✨')
 print('Aqui, estamos prontos para ajudar você a transformar seus sonhos em realidade. Seja para adquirir o seu lar ou para planejar um futuro financeiro mais tranquilo, nosso objetivo é fazer isso de forma simples e sem complicações.')
 
 # Solicita o nome do usuário
