@@ -1,70 +1,39 @@
 from datetime import datetime
 
-# Obtém a hora atual
+# Obtém a hora atual e define a saudação
 hora_atual = datetime.now().hour
+saudacao = "Bom dia" if hora_atual < 12 else "Boa tarde" if hora_atual < 18 else "Boa noite"
 
-# Define a saudação com base no horário
-if hora_atual < 12:
-    saudacao = "Bom dia"
-elif hora_atual < 18:
-    saudacao = "Boa tarde"
-else:
-    saudacao = "Boa noite"
-
-# Mensagem de boas-vindas personalizada
+# Mensagem de boas-vindas
 print(f'✨ {saudacao}, bem-vindo ao Rael Bank! ✨')
-print('Aqui, estamos prontos para ajudar você a transformar seus sonhos em realidade. Seja para adquirir o seu lar ou para planejar um futuro financeiro mais tranquilo, nosso objetivo é fazer isso de forma simples e sem complicações.')
+print('Aqui, nosso objetivo é ajudar você a transformar seus sonhos em realidade.')
 
-# Solicita o nome do usuário
-nome = input('\nAntes de seguirmos, qual é o seu nome? ')
+# Solicita o nome e informações do usuário
+nome = input('\nQual é o seu nome? ')
+valor_casa = float(input(f'\nQual o valor da casa que você deseja comprar, {nome}? R$ '))
+entrada = float(input('Você pretende dar uma entrada? Se sim, informe o valor (ou digite 0): R$ '))
+salario = float(input('Qual o valor do seu salário mensal? R$ '))
+anos_pagar = int(input('Em quantos anos você gostaria de parcelar o seu empréstimo? '))
 
-print(f'\nÉ um prazer imenso ter você conosco, {nome}! Vamos embarcar juntos nessa jornada para encontrar a melhor solução para o seu financiamento. 🚀')
-
-# Solicita o valor da casa que o usuário deseja comprar
-valor_casa = float(input('\nAgora, me conte, qual o valor da casa que você deseja comprar? R$ '))
-
-# Pergunta se o usuário deseja dar uma entrada
-entrada = float(input('Você pretende dar uma entrada para reduzir o financiamento? Se sim, informe o valor (ou digite 0 caso não queira): R$ '))
-
-# Ajusta o valor a ser financiado
+# Calcula valores
 valor_financiado = valor_casa - entrada
-
-# Solicita o valor do salário do usuário
-salario = float(input('Perfeito! Agora, qual o valor do seu salário mensal? R$ '))
-
-# Solicita o número de anos que o usuário deseja para pagar o empréstimo
-anos_pagar = int(input('E em quantos anos você gostaria de parcelar o seu empréstimo? '))
-
-# Calcula o número de parcelas (meses) com base nos anos fornecidos
 num_parcelas = anos_pagar * 12
-
-# Calcula o valor de cada parcela do empréstimo
 valor_parcelas = valor_financiado / num_parcelas
-
-# Calcula 30% do salário do usuário, que será o valor máximo permitido para a parcela
 score30 = salario * 0.30
 
-# Verifica se o valor da parcela é menor ou igual a 30% do salário
+# Verifica aprovação do empréstimo
 if valor_parcelas <= score30:
-    # Se sim, aprova o empréstimo
-    print(f'\n🎉 Uau, {nome}! Seu empréstimo foi APROVADO com sucesso!!! 🎉 Agora você está mais perto de conquistar o seu novo lar!')
-
+    print(f'\n🎉 Seu empréstimo foi APROVADO, {nome}! 🎉')
 else:
-    # Se não, informa ao usuário que a parcela excede o limite permitido
-    print(f'\n⚠ Opa, {nome}, a parcela ficou um pouco acima de 30% do seu salário. Mas não se preocupe, isso não é um obstáculo, é só um pequeno ajuste!')
-
-    # Ajusta o número de anos para pagar até que a parcela esteja dentro do limite permitido
+    print(f'\n⚠ A parcela excede 30% do seu salário. Vamos ajustar!')
     while valor_parcelas > score30:
-        anos_pagar += 1  # Aumenta o número de anos
-        num_parcelas = anos_pagar * 12  # Recalcula o número de parcelas
-        valor_parcelas = valor_financiado / num_parcelas  # Recalcula o valor da parcela
-
-    # Mensagem informando que o prazo foi aumentado e a parcela ficou mais acessível
-    print(f'\n🔄 Para facilitar, aumentamos o prazo para {anos_pagar} anos. Isso vai diminuir o valor da sua parcela mensal, mas o valor total pago ao final será um pouquinho maior. A boa notícia é que você vai ter mais tempo para respirar financeiramente.')
+        anos_pagar += 1
+        num_parcelas = anos_pagar * 12
+        valor_parcelas = valor_financiado / num_parcelas
+    print(f'\n🔄 Ajustamos para {anos_pagar} anos, diminuindo o valor da parcela.')
 
     # Pergunta se o cliente aceita a nova proposta
-    resposta = input(f'O que você acha dessa nova proposta? Vamos em frente? (sim/não): ').strip().lower()
-    if resposta == 'sim':
-        print(f'\nPerfeito, {nome}! Estamos animados para dar o próximo passo com você e fazer seu sonho virar realidade.')
+    if input(f'O que você acha dessa nova proposta? (sim/não): ').strip().lower() == 'sim':
+        print(f'\nPerfeito, {nome}! Vamos em frente!')
     else:
-        print(f'\nSem problema, {nome}! Estamos aqui para ajustar e encontrar a melhor opção para o seu bolso e seus sonhos.')
+        print(f'\nSem problema, {nome}! Vamos encontrar a melhor solução para você.')
