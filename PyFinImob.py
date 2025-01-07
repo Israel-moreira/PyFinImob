@@ -21,19 +21,40 @@ num_parcelas = anos_pagar * 12
 valor_parcelas = valor_financiado / num_parcelas
 score30 = salario * 0.30
 
+# Simulação de juros: para efeitos ilustrativos, consideramos uma taxa de juros simples de 6% ao ano
+taxa_juros_ano = 0.06
+juros_totais = valor_financiado * taxa_juros_ano * anos_pagar
+valor_total_com_juros = valor_financiado + juros_totais
+valor_parcelas_com_juros = valor_total_com_juros / num_parcelas
+
+# Exibe o valor da parcela inicial sem juros
+print(f'\nO valor da sua parcela sem juros seria: R$ {valor_parcelas:.2f}')
+
+# Exibe o valor da parcela com juros
+print(f'\nCom juros de {taxa_juros_ano * 100}% ao ano, o valor da sua parcela seria: R$ {valor_parcelas_com_juros:.2f}')
+
 # Verifica aprovação do empréstimo
-if valor_parcelas <= score30:
+if valor_parcelas_com_juros <= score30:
     print(f'\n🎉 Seu empréstimo foi APROVADO, {nome}! 🎉')
 else:
     print(f'\n⚠ A parcela excede 30% do seu salário. Vamos ajustar!')
-    while valor_parcelas > score30:
+    while valor_parcelas_com_juros > score30:
         anos_pagar += 1
         num_parcelas = anos_pagar * 12
-        valor_parcelas = valor_financiado / num_parcelas
+        valor_parcelas_com_juros = valor_total_com_juros / num_parcelas
     print(f'\n🔄 Ajustamos para {anos_pagar} anos, diminuindo o valor da parcela.')
 
-    # Pergunta se o cliente aceita a nova proposta
-    if input(f'O que você acha dessa nova proposta? (sim/não): ').strip().lower() == 'sim':
-        print(f'\nPerfeito, {nome}! Vamos em frente!')
-    else:
-        print(f'\nSem problema, {nome}! Vamos encontrar a melhor solução para você.')
+# Pergunta se o cliente aceita a nova proposta
+if input(f'O que você acha dessa nova proposta? (sim/não): ').strip().lower() == 'sim':
+    print(f'\nPerfeito, {nome}! Vamos em frente!')
+else:
+    print(f'\nSem problema, {nome}! Vamos encontrar a melhor solução para você.')
+
+# Exibe o resumo final
+print(f'\n🔑 Resumo do seu empréstimo:')
+print(f'Valor da casa: R$ {valor_casa:.2f}')
+print(f'Valor da entrada: R$ {entrada:.2f}')
+print(f'Valor financiado: R$ {valor_financiado:.2f}')
+print(f'Número de parcelas: {num_parcelas} parcelas')
+print(f'Valor da parcela com juros: R$ {valor_parcelas_com_juros:.2f}')
+print(f'Valor total pago ao final do financiamento (incluindo juros): R$ {valor_total_com_juros:.2f}')
